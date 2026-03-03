@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+*.pyc
+.env
+uploads/
+generated_docs/
+.vscode/
+.idea/
+*.zip
+*.pdf
+node_modules/
+dist/
+build/
