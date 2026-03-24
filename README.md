@@ -1,8 +1,39 @@
-# AI Code-to-Doc Generator
+# 🤖 CodeToDoc AI
 
-An AI-powered automated documentation generator that transforms codebases into structured technical documentation (Markdown & PDF).
+![Hero Banner](assets/hero_banner.png)
 
-## 🏗️ Architecture Diagram
+> **CodeToDoc AI: A high-performance, AI-driven documentation generator for modern codebases. It performs a deep audit of your project locally using qwen2.5-coder to produce structured Markdown documentation, interactive dependency graphs, and professional PDF reports—all while keeping your code private and secure.**
+
+An advanced, AI-powered automated documentation generator that leverages **Local LLMs** (qwen2.5-coder) to audit, analyze, and document your projects with precision. No data leaves your machine.
+
+---
+
+## ✨ Key Features
+
+### 🧠 Local Intelligence
+
+![Local AI](assets/local_ai.png)
+
+- **Privacy First**: Uses Ollama and Qwen2.5-Coder running locally on your hardware.
+- **Deep Audit**: Goes beyond docstrings; infers logic, purpose, and optimization opportunities.
+- **Support**: Optimized for Python, JavaScript, and TypeScript.
+
+### 📊 Interactive Architecture
+
+![Dependency Graph](assets/dependency_graph.png)
+
+- **Auto-Graphing**: Generates complex dependency maps using Mermaid.js.
+- **Pan & Zoom**: Interactive dashboard allows exploring large codebases easily.
+- **Standardized Exports**: Export documentation as clean Markdown or professional PDFs.
+
+### 🎨 Premium Experience
+
+- **Glassmorphism UI**: A modern, dark-themed interface designed for the next generation of developers.
+- **Real-time Terminal**: Watch the AI analyze your code with a live progress feed.
+
+---
+
+## 🏗️ Technical Architecture
 
 The following diagram illustrates the data flow and modular structure of the system:
 
@@ -17,55 +48,76 @@ graph TD
     F --> H[Metadata Extractor]
     G --> H
     H --> I[Dependency & Graph Extractor]
-    I --> J[Markdown Generator]
-    J --> K[PDF Converter]
-    K --> L[Output: MD & PDF Docs]
+    I --> J[AI Logic Integration (Local LLM)]
+    J --> K[Markdown Generator]
+    K --> L[PDF Converter]
+    L --> M[Output: MD & PDF Docs]
+    
+    subgraph "AI Engine"
+    J --- N[Ollama / qwen2.5-coder]
+    end
 ```
 
-## 🛠️ Setup Instructions
+---
+
+## 🛠️ Getting Started
 
 ### Prerequisites
 
 - **Python 3.10+**
+- **Ollama** (for local AI analysis)
 - **pip** (Python package manager)
 
 ### Installation
 
-1. Clone the repository:
+1. **Clone the repository:**
 
    ```bash
    git clone <repository-url>
    cd assisto-task1
    ```
 
-2. Install the required dependencies:
+2. **Install dependencies:**
 
    ```bash
    pip install -r code_to_doc/requirements.txt
    ```
 
+3. **Start Ollama:**
+
+   Ensure Ollama is running and you have pulled the required model:
+
+   ```bash
+   ollama pull qwen2.5-coder
+   ```
+
 ### Running the Application
 
-1. Start the FastAPI server:
+1. **Launch the FastAPI server:**
 
    ```bash
    python -m code_to_doc.main
    ```
 
-2. Open your browser and navigate to:
-   `http://localhost:8000`
-3. Upload a ZIP file of your code repository and click **Generate Documentation**.
+2. **Access the Dashboard:**
 
-## 🎨 Design Decisions
+   Open [http://localhost:8000](http://localhost:8000) in your browser.
 
-1. **Static Analysis Only**: For security and speed, the system uses Python's `ast` module and regex patterns for JavaScript. It **never executes** the user's code, preventing malicious script execution during analysis.
-2. **Inferred Documentation**: When source code lacks docstrings, the system uses "Inference Logic" to provide context (e.g., "Inferred: No docstring found") instead of leaving blank sections.
-3. **Multiprocessing**: To handle projects larger than 10,000 lines of code (LOC) within the 3-minute performance requirement, file analysis is parallelized using `ProcessPoolExecutor`.
-4. **Glassmorphism UI**: The web interface uses modern CSS aesthetics (vibrant colors, blur effects) to provide a premium user experience compared to standard documentation tools.
+3. **Generate Docs:**
 
-## 📝 Assumptions
+   Upload a ZIP of your repository and click **Analyze with Local AI**.
 
-1. **Project Format**: The system assumes projects are uploaded as `.zip` files.
-2. **Supported Languages**: Currently optimized for Python (`.py`) and JavaScript/TypeScript (`.js`, `.jsx`, `.ts`, `.tsx`). Other file types are listed in the folder structure but not deeply analyzed.
-3. **API Patterns**: Route extraction is optimized for popular frameworks like FastAPI, Flask, and Express (pattern matching).
-4. **Dependencies**: Accurate dependency graphing depends on standard import statements (e.g., `import x`, `from x import y`, `import x from 'y'`).
+---
+
+## 🚀 Performance & Security
+
+- **Parallel Processing**: Uses `ProcessPoolExecutor` to handle massive codebases (10,000+ LOC) efficiently.
+- **Zero Execution**: Code is analyzed statistically using AST; it is never executed, ensuring safety against malicious scripts.
+- **Local Data**: All analysis happens on-device; no proprietary code is sent to external APIs.
+
+---
+
+## 📝 License & Contributing
+
+Built with ❤️ by [BytePilotManish](https://github.com/BytePilotManish).  
+Feel free to open issues or pull requests to improve the documentation engine!
