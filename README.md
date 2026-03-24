@@ -39,22 +39,22 @@ The following diagram illustrates the data flow and modular structure of the sys
 
 ```mermaid
 graph TD
-    A[User Upload / ZIP] --> B[FastAPI Backend (main.py)]
-    B --> C[Project Scanner]
-    C --> D[Language Detector]
+    A["User Upload / ZIP"] --> B["FastAPI Backend (main.py)"]
+    B --> C["Project Scanner"]
+    C --> D["Language Detector"]
     D --> E{File Type?}
-    E -->|Python| F[Python AST Parser]
-    E -->|JS/React| G[JS Pattern Parser]
-    F --> H[Metadata Extractor]
+    E -->|Python| F["Python AST Parser"]
+    E -->|JS/React| G["JS Pattern Parser"]
+    F --> H["Metadata Extractor"]
     G --> H
-    H --> I[Dependency & Graph Extractor]
-    I --> J[AI Logic Integration (Local LLM)]
-    J --> K[Markdown Generator]
-    K --> L[PDF Converter]
-    L --> M[Output: MD & PDF Docs]
+    H --> I["Dependency & Graph Extractor"]
+    I --> J["AI Logic Integration (Local LLM)"]
+    J --> K["Markdown Generator"]
+    K --> L["PDF Converter"]
+    L --> M["Output: MD & PDF Docs"]
     
     subgraph "AI Engine"
-    J --- N[Ollama / qwen2.5-coder]
+    J --- N["Ollama / qwen2.5-coder"]
     end
 ```
 
